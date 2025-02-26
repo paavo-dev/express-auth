@@ -56,7 +56,7 @@ router.post('/login', async (req, res) => {
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select('-password')-;
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users', error });
@@ -68,7 +68,7 @@ router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'User not found' }).select('-password');
     }
     res.status(200).json(user);
   } catch (error) {
