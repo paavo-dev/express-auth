@@ -14,9 +14,9 @@ app.use(cors());
 app.use(express.json());
 
 cloudinary.config({
-  cloud_name: 'dyuabsnoo',
-  api_key: '173288562748978',
-  api_secret: 'k4abGIBTeb8UUjIWvLEcPdoVbmg',
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_APIKEY,
+  api_secret: process.env.CLOUD_SECRET
 });
 
 const storage = multer.memoryStorage();
